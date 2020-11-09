@@ -1,0 +1,3 @@
+[submodule "dportal"]
+	path = dportal
+	url = git@github.com:devinit/D-Portal.git
