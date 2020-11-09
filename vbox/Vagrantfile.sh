@@ -58,3 +58,14 @@ echo ' creating postgres users only not databases which are created later '
 sudo -u postgres bash -c "psql -c \"CREATE USER $PGUSER WITH SUPERUSER PASSWORD '$PGPASS';\""
 sudo -u postgres bash -c "psql -c \"CREATE USER readonly WITH LOGIN PASSWORD 'secret' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';\""
 
+
+
+echo " installing nginx "
+
+sudo apt-get install -y nginx
+
+
+echo " final configuration setup "
+bash /host/vbox/nginx-install
+
+

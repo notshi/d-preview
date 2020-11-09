@@ -1,0 +1,12 @@
+cd `dirname $0`
+
+echo " installing nginx configurations "
+
+
+cp ./nginx-default /etc/nginx/sites-enabled/default
+
+sudo systemctl reload nginx
+
+
+
+
