@@ -1,0 +1,9 @@
+cd `dirname $0`
+
+echo " performing a git pull and updating submodules "
+
+git pull
+git submodule update --init --recursive
+
+
+

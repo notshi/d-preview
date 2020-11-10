@@ -1,26 +1,5 @@
+cd `dirname $0`
 
-sudo apt-get update
-
-echo " install build system "
-
-sudo apt-get install -y build-essential
-
-echo " setting default DSTORE_PG , must be done before byobu breaks .profile "
-echo "export DSTORE_PG=\"?\" " >> /home/vagrant/.profile
-echo "export DSTORE_PGRO=\"postgres://readonly:secret@localhost:5432/dstore\" " >> /home/vagrant/.profile
-echo "export DSTORE_DEBUG=1 " >> /home/vagrant/.profile
-
-echo " install and enable byobu "
-
-sudo apt-get install -y byobu
-sudo -u vagrant -H bash -c "byobu-enable"
-
-
-
-echo " apt install node npm"
-
-sudo apt-get install -y npm
-sudo apt-get install -y nodejs
 
 
 echo " install postgres "
@@ -57,15 +36,3 @@ echo ' creating postgres users only not databases which are created later '
 
 sudo -u postgres bash -c "psql -c \"CREATE USER $PGUSER WITH SUPERUSER PASSWORD '$PGPASS';\""
 sudo -u postgres bash -c "psql -c \"CREATE USER readonly WITH LOGIN PASSWORD 'secret' NOSUPERUSER INHERIT NOCREATEDB NOCREATEROLE NOREPLICATION VALID UNTIL 'infinity';\""
-
-
-
-echo " installing nginx "
-
-sudo apt-get install -y nginx
-
-
-echo " final configuration setup "
-bash /host/vbox/nginx-install
-
-
