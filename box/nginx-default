@@ -10,6 +10,8 @@ upstream nodejsapp {
 server {
 
 	server_name portald.wetgenes.com;
+	
+	root /portald/www;
 
 	location / {
 		proxy_set_header X-Real-IP $remote_addr;
