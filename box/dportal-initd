@@ -24,68 +24,71 @@
 # Based on a script posted by https://gist.github.com/jinze at https://gist.github.com/3748766
 #
 
-#switch to another user
+
+FOREVER="/usr/local/bin/forever"
+NODE="/usr/bin/node"
+
+DIR="/portald"
+APP="$DIR/dportal/dportal/js/serv.js"
+
+LOGDIR="$DIR/logs"
+LOGFILE="$LOGDIR/portald"
+
+
+
+
+source $DIR/box/env.sh
+
+
+# switch from root to $PGUSER
+
 if [ $UID -eq 0 ]; then
-	exec su "ctrack" "$0" "$@"
+	exec su "$PGUSER" "$0" "$@"
 fi
 
 
-command="/usr/bin/node"
-nodeDir="/portald"
-nodeApp="$nodeDir/dportal/dportal/js/serv.js"
-foreverApp="/usr/local/bin/forever"
-
-logDir="$nodeDir/logs"
-logFile="$logDir/dportal"
-
-source $nodeDir/box/dportal-env.sh
 
 start() {
-	echo "Starting $nodeApp"
+	echo "Starting $APP"
 
-	# Notice that we change the PATH because on reboot
-	# the PATH does not include the path to node.
-	# Launching forever with a full path
-	# does not work unless we set the PATH.
 	PATH=/usr/local/bin:$PATH
-	export NODE_ENV=production
-#   export DSTORE_DEBUG=1
-	cd $logDir
-	$foreverApp start -p ${logDir} --pidFile ${logFile}.pid -l ${logFile}.log -e ${logFile}.err -o ${logFile}.out -a -d -c "$command" $nodeApp
+	cd $DIR
+	$FOREVER start -p ${LOGDIR} --pidFile ${LOGFILE}.pid -l ${LOGFILE}.log -e ${LOGFILE}.err -o ${LOGFILE}.out -a -d -c "$NODE" $APP
 	RETVAL=$?
 }
 
 restart() {
-	echo "Restarting $nodeApp"
-	cd $logDir
-	$foreverApp restart -p ${logDir} $nodeApp
+	echo "Restarting $APP"
+	cd $DIR
+	$FOREVER restart -p ${LOGDIR} $APP
 	RETVAL=$?
 }
 
 stop() {
-	echo "Shutting down $nodeApp"
-	cd $logDir
-	$foreverApp stop -p ${logDir} $nodeApp
+	echo "Shutting down $APP"
+	cd $DIR
+	$FOREVER stop -p ${LOGDIR} $APP
 	RETVAL=$?
 }
 
 status() {
-	echo "Status $nodeApp"
-	cd $logDir
-	$foreverApp list -p ${logDir}
+	echo "Status $APP"
+	cd $DIR
+	$FOREVER list -p ${LOGDIR}
 	RETVAL=$?
 }
 
 log() {
-	echo "tail -f $logFile"
-	cd $logDir
-	tail -f $logFile
+	echo "tail -f $LOGFILE"
+	cd $DIR
+	tail -f $LOGFILE
 	RETVAL=$?
 }
 
 cron() {
-	echo "cron $nodeApp"
-	cd $nodeDir
+	echo "cron $APP"
+	cd $DIR
+	bin/cron.sh
 	RETVAL=$?
 }
 
@@ -100,13 +103,13 @@ case "$1" in
 		status
 		;;
 	restart)
-	restart
+		restart
 		;;
 	log)
-	log
+		log
 		;;
 	cron)
-	cron
+		cron
 		;;
 	*)
 		echo "Usage:  {start|stop|status|restart|log}"

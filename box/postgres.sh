@@ -1,6 +1,7 @@
 cd `dirname $0`
 
-
+# set PGUSER and PGPASS 
+source env.sh
 
 echo " install postgres "
 
@@ -17,8 +18,6 @@ sudo pg_createcluster --locale en_US.UTF-8 --start $PGVER main
 echo " attempting to setup postgres "
 
 PGMAIN=/etc/postgresql/$PGVER/main
-PGUSER=vagrant
-PGPASS=vagrant
 
 echo '#HAXTBH' >> $PGMAIN/postgresql.conf
 echo 'max_wal_senders=1' >> $PGMAIN/postgresql.conf
