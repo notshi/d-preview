@@ -1,7 +1,7 @@
 cd `dirname $0`
 
 # set PGUSER and PGPASS 
-source env.sh
+source ./env.sh
 
 echo " install postgres "
 
@@ -19,16 +19,16 @@ echo " attempting to setup postgres "
 
 PGMAIN=/etc/postgresql/$PGVER/main
 
-echo '#HAXTBH' >> $PGMAIN/postgresql.conf
-echo 'max_wal_senders=1' >> $PGMAIN/postgresql.conf
-echo 'wal_level=hot_standby' >> $PGMAIN/postgresql.conf
-echo 'synchronous_commit = off' >> $PGMAIN/postgresql.conf
-echo 'work_mem = 128MB' >> $PGMAIN/postgresql.conf
+sudo sh -c 'echo "#HAXTBH" >> $PGMAIN/postgresql.conf'
+sudo sh -c 'echo "max_wal_senders=1" >> $PGMAIN/postgresql.conf'
+sudo sh -c 'echo "wal_level=hot_standby" >> $PGMAIN/postgresql.conf'
+sudo sh -c 'echo "synchronous_commit = off" >> $PGMAIN/postgresql.conf'
+sudo sh -c 'echo "work_mem = 128MB" >> $PGMAIN/postgresql.conf'
 
-echo '#HAXTBH' >> $PGMAIN/pg_hba.conf
-echo "hostssl dstore readonly 127.0.0.1/32 md5" >> $PGMAIN/pg_hba.conf
-echo 'local replication all peer' >> $PGMAIN/pg_hba.conf
-/etc/init.d/postgresql restart
+sudo sh -c 'echo "#HAXTBH" >> $PGMAIN/pg_hba.conf'
+sudo sh -c 'echo "hostssl dstore readonly 127.0.0.1/32 md5" >> $PGMAIN/pg_hba.conf'
+sudo sh -c 'echo "local replication all peer" >> $PGMAIN/pg_hba.conf'
+sudo /etc/init.d/postgresql restart
 
 
 echo ' creating postgres users only not databases which are created later '

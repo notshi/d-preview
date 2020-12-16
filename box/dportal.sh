@@ -1,13 +1,19 @@
 cd `dirname $0`
 
-npm install -g forever
+#sudo apt install -y curl
+#sudo apt install -y parallel
+#sudo npm install -g forever
 
-mkdir /portald/logs
+sudo rm /portald
+sudo ln -s `readlink -f ..` /portald
+mkdir -p /portald/logs
 
-cp dportal-initd /etc/init.d/dportal
+../dportal/install_deps
 
-update-rc.d dportal defaults
-update-rc.d dportal enable
+sudo cp dportal-initd /etc/init.d/dportal
 
-/etc/init.d/dportal start
+sudo update-rc.d dportal defaults
+sudo update-rc.d dportal enable
+
+sudo /etc/init.d/dportal start
 
