@@ -4,6 +4,9 @@ echo " performing a git pull and updating submodules "
 
 git pull
 git submodule update --init --recursive
+cd dportal
+git checkout master
+cd ..
 
 
 
