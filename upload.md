@@ -27,6 +27,8 @@ progress of an import can be queried like so
 The import log, which will not be complete if import is ongoing, can also be found at
 
 	http://01234567012345670123456701234567.portald.wetgenes.com/q?from=cronlog
+	
+The current maximum upload size is set at 40mb.
 
 
 If you would prefer a json or jsonp response then setting jsonplease=1 
