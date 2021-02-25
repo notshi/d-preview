@@ -6,3 +6,5 @@ node_modules
 #local files are for local people
 *.local.*
 
+# generated html site
+docs
