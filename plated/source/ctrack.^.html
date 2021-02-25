@@ -1,0 +1,44 @@
+#^html
+<!DOCTYPE HTML>
+<html lang="en"> 
+	<head>
+		<meta name="viewport" content="width=device-width">
+		<meta name="theme-color" content="#142334">
+		<title>dpreview</title>
+		
+		<link rel="stylesheet" type="text/css" href="ctrack/art/original/ctrack.css">
+
+		<script src="{_root}ctrack/jslib/ctrack_loader.js"></script>
+		<script>
+			ctrack_loader({
+
+// where to load js/css/etc files from
+
+				root:"{_root}ctrack/",
+				q:"/q",
+
+// replace "this" with content from the portal
+
+				master:"#ctrack_div",
+
+// these are replaced into the generated html and you can overide *any* display chunk here
+
+				chunks:{
+					large_footer:"",
+					main_datainvestigators:"",
+					main_data_description:"",
+					beige:"{beige_instance}",
+					beige_instance_display:"THIS IS NOT DPORTAL",
+				}
+
+			});		
+		</script>
+	</head> 
+	<body>
+		<div id="ctrack_div">
+<!--
+		Anything in here will be shown while ctrack loads and be replaced with ctrack content afterwards.
+-->
+		</div>
+	</body>
+</html>

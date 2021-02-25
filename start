@@ -1,0 +1,3 @@
+cd `dirname $0`
+
+dportal/ctrack/watch 1>&2 | tee | dportal/dflat/watch 1>&2 | tee | plated/watch 1>&2 | tee | node dportal/dportal/js/serv.js --staticdir=docs --homepage=/upload
