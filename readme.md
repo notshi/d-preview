@@ -73,14 +73,22 @@ change the dportal default values by editing dportal/box/env.local.sh
 
 	nano dportal/box/env.local.sh
 
-and adding the following which will be used to install postgres
+and adding the following which will be used to install postgres and use a
+different html directory
 
 	export PGUSER="ubuntu"
 	export PGPASS="*put*a*super*secret*password*here*"
 
+	export DSTORE_STATICDIR="/home/ubuntu/dpreview/docs"
+	export DSTORE_HOMEPAGE="/upload"
+
 you can now install dportal from the dportal box directory
 
 	dportal/box/install-all.sh
+
+and build the dpreview site with
+
+	./build
 
 finally make sure we pickup the default env settings when we login so 
 dportal is a little easier to manage. byobu mucks with this file so 
@@ -92,4 +100,3 @@ needs to be turned off and back on.
 	source /dportal/box/env.sh
 
 and we are good to go
-
