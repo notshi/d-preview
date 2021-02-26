@@ -1,9 +1,9 @@
 
 ssh dpreview "/home/ubuntu/portald/git-pull"
 
-ssh dpreview "/home/ubuntu/portald/build"
+#ssh dpreview "/home/ubuntu/portald/build"
 
-ssh dpreview "/etc/init.d/dportal restart"
+#ssh dpreview "/etc/init.d/dportal restart"
 
-ssh dpreview "/etc/init.d/dportal status"
+#ssh dpreview "/etc/init.d/dportal status"
 
