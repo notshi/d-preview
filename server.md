@@ -1,4 +1,4 @@
-# portald
+# how to install this code on a real server
 
 setup local machine to connect to the server
 
