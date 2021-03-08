@@ -2,8 +2,6 @@
 
 let cmd=exports
 
-let stringify = require('json-stable-stringify')
-
 let ls=function(a) { console.log(util.inspect(a,{depth:null})) }
 
 cmd.opts={
@@ -19,7 +17,7 @@ cmd.run=async function(argv)
 
 	if( argv._[0]=="read" )
 	{
-		return await require("./tsv.js").read("upload.tsv")
+		return await require("./stash.js").read_tsv( __dirname+"/../stash.tsv")
 	}
 
 	// help text
@@ -28,12 +26,8 @@ cmd.run=async function(argv)
 >	dpreview-logs read [filename.tsv]
 
 	Read in the fresh data from upload tsv logs and save in our temporary json
-	database, ignoring any duplicate lines.
-
->	dpreview-logs write [filename.json]
-
-	Dump our internal database into daily json stats ( removing private
-	identity ) that can then be published and visualised.
+	database, ignoring any duplicate lines and writing full day stats into
+	stats/upload.json
 
 
 `)

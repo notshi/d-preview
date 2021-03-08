@@ -1,5 +1,6 @@
 
 node_modules
 docs
-upload.tsv
+stash.tsv
+stash.json
 
