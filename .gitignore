@@ -1,6 +1,7 @@
 
 node_modules
 docs
-stash.tsv
-stash.json
+logs/stash.tsv
+logs/stash.json
+logs/stats/*
 
