@@ -1,0 +1,14 @@
+{
+  "name": "dpreview-logs",
+  "version": "0.0.0",
+  "description": "logs for dpreview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  }
+}
