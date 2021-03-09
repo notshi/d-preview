@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>d-preview Logs</title>
+		<style>
+			/* minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */ 
+			html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+
+			* 	{box-sizing:border-box;}
+			body{background:#fff; font-family:sans-serif; font-size:18px; line-height:24px; color:#444; width:100%;}
+			a{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out;}
+			
+			/*	HEADER SECTION	*/
+			
+			.content_wrap	{width:960px; margin:0 auto; position:relative;}
+			.header_wrap	{padding:4em 0 1.5em 0; width:800px; margin:0 auto;}
+			.header_text	{font-family:'Khula',sans-serif; font-size:72px; color:#454545; text-align:center; line-height:100px; margin:0 auto;}
+			.header_text span	{display:block; font-size:20px; line-height:26px; font-family:sans-serif;}
+			
+			/*	INDIVIDUAL CHARTs	*/
+			
+			.all_divs div	{width:85%; margin:0 auto;}
+			.all_divs span	{display:block; font-family:monospace; font-size:16px; padding:3em 0 0 1em; width:85%; margin:0 auto;}
+			
+			/*	CONTACT SECTION	*/
+			
+			.contact		{margin:0 auto; padding:2em 0; font-size:16px; line-height:1.5em; text-align:center;}
+			.contact a		{color:#034dfb; text-decoration:none; font-family:monospace; background:#fff; padding:0 5px; border-radius:4px;}
+			.contact a:hover{color:#034dfb; text-decoration:none; background:#eee;}
+			.contact span	{display:block; font-size:14px; font-style:italic;}		
+			
+			/*	MEDIA QUERIES	*/
+			@media screen and (max-width:600px) {
+				.header_wrap	{padding:3em 1.5em 2em 1.5em; width:initial;}
+				.header_text	{font-size:36px; line-height:40px;}
+				.header_text span	{font-size:16px; line-height:20px; padding-top:10px;}
+				.contact		{width:85%; font-size:14px;}
+				.content_wrap,
+				.contact span	{padding:10px 0;}
+			}
+		</style>
+		<script
+		src="https://code.jquery.com/jquery-3.2.1.min.js"
+		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+		<script>
+
+	
+	let addchart=function(data,opts){
+	 
+		let div=$('<div> <canvas></canvas> </div>')
+		$( opts.body || "body" ).append(div)
+		let ctx=div.children(":first")[0].getContext("2d");
+
+		let dl=[]
+		let dv=[]
+		let idx=0
+		for(let n in data){
+			dl[idx]=(new Date(Number(n)*8.64e7)).toLocaleDateString()
+			dv[idx]=data[n]
+			idx++
+		}
+		
+	let config = {
+		type: 'line',
+		data: {
+			labels: dl,
+			datasets: [{
+				label: opts.name || "Filled",
+				backgroundColor: opts.color || "#7583a8",
+				borderColor: opts.color || "#ccc",
+				data: dv,
+				fill: true,
+			}]
+		},
+		options: {
+			responsive: true,
+			title:{
+				display:opts.title && true || false,
+				text:opts.title || 'Chart.js Line Chart',
+				fontSize:14
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Day'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Amount'
+					}
+				}]
+			}
+		}
+	};
+
+	   return new Chart(ctx, config);
+	};
+
+			$.getJSON("upload.json", function(st) {
+
+
+				let divs=$(`<div class="all_divs"/>`)
+				$(".wrap").append(divs)
+
+				{
+					let n="visits"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="ips"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads_by_url"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads_ignored"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads_max_size"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads_total_size"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="uploads_ignored_total_size"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+				{
+					let n="errors"
+					let div=divs.append("<div />")
+					div.append("<span>"+n+"</span>")
+
+					addchart( st[n] , {
+						body:div,
+					})
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<div class="content_wrap">
+			<div class="header_wrap">
+				<div class="header_text">
+					d-preview logs
+					<span>Generated statistics and charts on usage logs.</span>
+				</div>
+			</div>
+			<div class="wrap"></div>
+			<div class="contact">
+				For preview purposes only. Data will not be uploaded to the main live d-portal website.
+				<span>This is a community hosted service. All preview instances will auto-delete after ten days.</span>
+				Project page, issues and feedback on <a href="https://github.com/notshi/d-preview" target="_blank">Github</a>.
+			</div>
+		</div>
+	</body>
+</html>
