@@ -1,0 +1,4 @@
+cd `dirname $0`
+
+rm -rf stats
+git clone git@github.com:notshi/d-preview.git --branch stats stats

@@ -113,16 +113,16 @@ stash.read_tsv=function(fname)
 	let maxday=Math.floor( db.logs[db.logs.length-1][0] / (60*60*24) )
 	let minday=Math.floor( db.logs[0][0] / (60*60*24) )
 
-	st=stats.read()
+	let st=stats.read_json()
 
 	for(let day=minday;day<maxday;day++)
 	{
 		console.log( day + " : " + new Date( day*60*60*24*1000) )
 		let daylogs=stash.get_day_logs(db,day)
-		ls(daylogs)
+		stats.add_day_stats(st,day,daylogs)
 	}
 
-	stats.write(st)
+	stats.write_json(st)
 
 	stash.remove_old_day_logs(db,maxday-1)
 
