@@ -3,5 +3,5 @@ node_modules
 docs
 logs/stash.tsv
 logs/stash.json
-logs/stats/*
+logs/stats
 
