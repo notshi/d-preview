@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 let stash=exports;
 
 let fs=require("fs")

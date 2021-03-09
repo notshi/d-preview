@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 let stats=exports;
 
 let fs=require("fs")
