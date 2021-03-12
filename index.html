@@ -23,6 +23,7 @@
 			
 			.all_divs div	{width:85%; margin:0 auto;}
 			.all_divs span	{display:block; font-family:monospace; font-size:16px; padding:3em 0 0 1em; width:85%; margin:0 auto;}
+			span.chart_info {font-size:14px; font-family:sans-serif; padding:0 0 1em 1.25em;}
 			
 			/*	CONTACT SECTION	*/
 			
@@ -122,8 +123,9 @@
 
 				{
 					let n="visits"
+					let p="A hit on the website, every page load is a visit."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -131,8 +133,9 @@
 				}
 				{
 					let n="ips"
+					let p="Number of unique ips that have visited the page."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -140,8 +143,9 @@
 				}
 				{
 					let n="uploads"
+					let p="Number of uploads, includes fetches by url."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -149,8 +153,9 @@
 				}
 				{
 					let n="uploads_by_url"
+					let p="Number of fetches by typing in a url."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -158,8 +163,9 @@
 				}
 				{
 					let n="uploads_ignored"
+					let p="Number of duplicate uploads that we ignored."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -167,8 +173,9 @@
 				}
 				{
 					let n="uploads_max_size"
+					let p="The maximum size of an upload."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -176,8 +183,9 @@
 				}
 				{
 					let n="uploads_total_size"
+					let p="The combined size of all uploaded data."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -185,8 +193,9 @@
 				}
 				{
 					let n="uploads_ignored_total_size"
+					let p="The combined size of all ignored uploaded data."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
@@ -194,8 +203,9 @@
 				}
 				{
 					let n="errors"
+					let p="Number of errors logged during the upload process; ie. typing in an invalid url."
 					let div=divs.append("<div />")
-					div.append("<span>"+n+"</span>")
+					div.append("<span>"+n+"</span>", "<span class='chart_info'>"+p+"</span>")
 
 					addchart( st[n] , {
 						body:div,
