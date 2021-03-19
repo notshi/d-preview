@@ -1,8 +1,7 @@
 # d-preview
 Generate a private d-preview site with IATI xml.
 
-Upload from your computer, or use a link to a file that is on the web and easily create a preview of your data on a temporary site.  
-Data will not be uploaded to the main live d-portal website.
+Upload from your computer, or use a link to a file that is on the web and easily create a preview of your data on a temporary site. Data will not be uploaded to the main live d-portal website.
 
 This is a community hosted service. Read more about [how it came to be](https://medium.com/opendatacoop/announcing-d-preview-helping-organisations-check-their-iati-data-before-publishing-669b24ae20d).
 
