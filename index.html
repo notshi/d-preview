@@ -15,11 +15,19 @@
 			/*	HEADER SECTION	*/
 			
 			.content_wrap	{width:960px; margin:0 auto; position:relative;}
-			.header_wrap	{padding:4em 0 1.5em 0; width:800px; margin:0 auto;}
+			.header_wrap	{padding:4em 0; width:800px; margin:0 auto;}
 			.header_text	{font-family:'Khula',sans-serif; font-size:72px; color:#454545; text-align:center; line-height:100px; margin:0 auto;}
 			.header_text span	{display:block; font-size:20px; line-height:26px; font-family:sans-serif;}
 			
-			/*	INDIVIDUAL CHARTs	*/
+			/*	TABLE LOGS	*/
+			
+			.table_wrap		{margin:0 auto; width:85%;}
+			.table_logs		{table-layout:fixed; width:820px; margin:0 auto; font-size:14px;}
+			.table_logs thead th	{border-bottom:1px solid #ccc;}
+			.table_logs th,
+			.table_logs td	{padding:5px 0; border-bottom:1px solid #ddd;}
+			
+			/*	INDIVIDUAL CHARTS	*/
 			
 			.all_divs div	{width:85%; margin:0 auto;}
 			.all_divs span	{display:block; font-family:monospace; font-size:16px; padding:3em 0 0 1em; width:85%; margin:0 auto;}
@@ -27,7 +35,7 @@
 			
 			/*	CONTACT SECTION	*/
 			
-			.contact		{margin:0 auto; padding:2em 0; font-size:16px; line-height:1.5em; text-align:center;}
+			.contact		{margin:0 auto; padding:4em 0; font-size:16px; line-height:1.5em; text-align:center;}
 			.contact a		{color:#034dfb; text-decoration:none; font-family:monospace; background:#fff; padding:0 5px; border-radius:4px;}
 			.contact a:hover{color:#034dfb; text-decoration:none; background:#eee;}
 			.contact span	{display:block; font-size:14px; font-style:italic;}		
@@ -118,8 +126,93 @@
 			$.getJSON("upload.json", function(st) {
 
 
+				let daycount=function(dd)
+					{
+						let aa=[]
+						
+						aa[0] = dd[ st.daymax ]
+
+						aa[1] = 0
+						for( let i=0 ; i<7 ; i++ )
+						{
+							aa[1] += dd[ st.daymax-i ] || 0
+						}
+						
+						aa[2] = 0
+						for( let i=0 ; i<30 ; i++ )
+						{
+							aa[2] += dd[ st.daymax-i ] || 0
+						}
+						
+						aa[3] = 0
+						for( let i=st.daymin ; i<=st.daymax ; i++ )
+						{
+							aa[3] += dd[ i ] || 0
+						}
+
+						return aa
+					}
+
+
+				let dat={}
+
+				dat.link=daycount(st.uploads_by_url)
+				dat.total=daycount(st.uploads)
+				dat.size=daycount(st.uploads_total_size)
+
+
+				let table=$(`
+							<div class="table_wrap">
+								<table class="table_logs">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Upload</th>
+											<th>Link</th>
+											<th>Total</th>
+											<th>Total Size</th>
+										</tr>
+									</thead>
+									<tbody>				
+										<tr>
+											<th>Last 1 days</th>
+											<td>${dat.total[0]-dat.link[0]}</td>
+											<td>${dat.link[0]}</td>
+											<td>${dat.total[0]}</td>
+											<td>${dat.size[0]}</td>
+										</tr>				
+										<tr>
+											<th>Last 7 days</th>
+											<td>${dat.total[1]-dat.link[1]}</td>
+											<td>${dat.link[1]}</td>
+											<td>${dat.total[1]}</td>
+											<td>${dat.size[1]}</td>
+										</tr>				
+										<tr>
+											<th>Last 30 days</th>
+											<td>${dat.total[2]-dat.link[2]}</td>
+											<td>${dat.link[2]}</td>
+											<td>${dat.total[2]}</td>
+											<td>${dat.size[2]}</td>
+										</tr>				
+									<tr>
+										<th>Ever</th>
+										<td>${dat.total[3]-dat.link[3]}</td>
+										<td>${dat.link[3]}</td>
+										<td>${dat.total[3]}</td>
+										<td>${dat.size[3]}</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+				`)
+				
+				$(".wrap").append(table)
+
+				
 				let divs=$(`<div class="all_divs"/>`)
 				$(".wrap").append(divs)
+
 
 				{
 					let n="visits"
