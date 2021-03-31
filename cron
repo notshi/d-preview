@@ -1,0 +1,13 @@
+cd `dirname $0`
+
+exec >/dportal/logs/cron.log
+
+./git-pull
+
+./build
+
+/etc/init.d/dportal stop
+/etc/init.d/dportal status
+
+logs/cron
+
