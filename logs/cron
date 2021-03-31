@@ -4,7 +4,7 @@ npm install
 
 ./clonestats
 
-./fetch-local
+mv /dportal/dstore/instance/upload.tsv ./stash.tsv
 
 ./dpreview-logs read
 
@@ -12,7 +12,4 @@ cd stats
 git add .
 git commit -m.
 git push
-
-
-
 

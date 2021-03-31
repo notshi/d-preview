@@ -1,3 +1,0 @@
-cd `dirname $0`
-
-cp /dportal/dstore/instance/upload.tsv ./stash.tsv
