@@ -2,12 +2,23 @@ cd `dirname $0`
 
 exec >/dportal/logs/cron.log
 
+
 ./git-pull
+
+
+cd dportal
+npm install
+cd ..
+
 
 ./build
 
+
 /etc/init.d/dportal stop
+/etc/init.d/dportal start
 /etc/init.d/dportal status
 
+
 logs/cron
+
 
