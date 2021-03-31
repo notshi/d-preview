@@ -6,11 +6,6 @@ exec >/dportal/logs/cron.log
 ./git-pull
 
 
-cd dportal
-npm install
-cd ..
-
-
 ./build
 
 

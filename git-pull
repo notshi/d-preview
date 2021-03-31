@@ -9,5 +9,8 @@ git checkout master
 git pull
 cd ..
 
+cd dportal
+npm install
+cd ..
 
 plated/upgrade
