@@ -44,4 +44,4 @@ will change the response
 	curl -v http://portald.wetgenes.com/upload?xmlurl=http%3A%2F%2Fdomain.name%2Fpath%2Fto%2Ffile.xml\&jsonplease=1
 
 ## Stats
-We have some [stats](https://notshi.github.io/d-preview/)!
+We have a [status page](https://stats.uptimerobot.com/8MWyWsgj7) and some [stats](https://notshi.github.io/d-preview/)!
